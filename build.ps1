@@ -1,4 +1,4 @@
 ﻿Remove-Item –path ./client –recurse
-& java -jar swagger-codegen-cli.jar generate -i https://api.cloudmersive.com/swagger/api/nlpv2 -l objc -o client -c packageconfig.json
-(Get-Content ./client/CloudmersiveNLPApiClient.podspec).replace('CloudmersiveNLPApiClient/**/*.{m,h}', "client/CloudmersiveNLPApiClient/**/*.{m,h}") | Set-Content ./client/CloudmersiveNLPApiClient.podspec
-(Get-Content ./client/CloudmersiveNLPApiClient.podspec).replace('CloudmersiveNLPApiClient/**/*.h', "client/CloudmersiveNLPApiClient/**/*.h") | Set-Content ./client/CloudmersiveNLPApiClient.podspec
+& java -jar swagger-codegen-cli.jar generate -i https://api.cloudmersive.com/spam/v1/swagger.json -l objc -o client -c packageconfig.json
+(Get-Content ./client/CloudmersiveSpamApiClient.podspec).replace('CloudmersiveSpamApiClient/**/*.{m,h}', "client/CloudmersiveSpamApiClient/**/*.{m,h}") | Set-Content ./client/CloudmersiveSpamApiClient.podspec
+(Get-Content ./client/CloudmersiveSpamApiClient.podspec).replace('CloudmersiveSpamApiClient/**/*.h', "client/CloudmersiveSpamApiClient/**/*.h") | Set-Content ./client/CloudmersiveSpamApiClient.podspec

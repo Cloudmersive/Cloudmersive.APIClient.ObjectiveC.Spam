@@ -1,9 +1,9 @@
 ﻿{
 
-  "podName" : "CloudmersiveNLPApiClient",
+  "podName" : "CloudmersiveSpamApiClient",
   "classPrefix" : "CM",
-  "podVersion" : "2.0.3",
+  "podVersion" : "2.0.0",
   "authorName" : "Cloudmersive",
   "authorEmail" : "support@cloudmersive.com",
-  "gitRepoURL" : "https://github.com/Cloudmersive/Cloudmersive.APIClient.ObjectiveC.NLP"
+  "gitRepoURL" : "https://github.com/Cloudmersive/Cloudmersive.APIClient.ObjectiveC.Spam"
 }  
