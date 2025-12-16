@@ -1,4 +1,4 @@
-# CMSpamDetectionAdvancedResponse
+# CMSpamDetectionFormSubmissionAdvancedResponse
 
 ## Properties
 Name | Type | Description | Notes

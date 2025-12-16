@@ -41,8 +41,11 @@ Import the following:
 #import <CloudmersiveSpamApiClient/CMApiClient.h>
 #import <CloudmersiveSpamApiClient/CMDefaultConfiguration.h>
 // load models
+#import <CloudmersiveSpamApiClient/CMSpamDetectionAdvancedFormField.h>
+#import <CloudmersiveSpamApiClient/CMSpamDetectionAdvancedFormSubmissionRequest.h>
 #import <CloudmersiveSpamApiClient/CMSpamDetectionAdvancedRequest.h>
 #import <CloudmersiveSpamApiClient/CMSpamDetectionAdvancedResponse.h>
+#import <CloudmersiveSpamApiClient/CMSpamDetectionFormSubmissionAdvancedResponse.h>
 #import <CloudmersiveSpamApiClient/CMSpamDetectionRequest.h>
 #import <CloudmersiveSpamApiClient/CMSpamDetectionResponse.h>
 // load API classes for accessing endpoints
@@ -68,12 +71,22 @@ CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
 
 
-CMSpamDetectionAdvancedRequest* *body = [[CMSpamDetectionAdvancedRequest alloc] init]; // Spam detection request (optional)
+NSString* *model = @"Advanced"; // Optional: Specify which AI model to use.  Possible choices are Normal and Advanced.  Default is Advanced. (optional) (default to Advanced)
+NSString* *preprocessing = @"Auto"; // Optional: Specify which preprocessing to Use.  Possible choices are None, Compatability and Auto.  Default is Auto. (optional) (default to Auto)
+NSNumber* *allowPhishing = @false; // True if phishing should be allowed, false otherwise (optional) (default to false)
+NSNumber* *allowUnsolicitedSales = @false; // True if unsolicited sales should be allowed, false otherwise (optional) (default to false)
+NSNumber* *allowPromotionalContent = @true; // True if promotional content should be allowed, false otherwise (optional) (default to true)
+NSURL* *inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; //  (optional)
 
 CMSpamDetectionApi *apiInstance = [[CMSpamDetectionApi alloc] init];
 
 // Perform advanced AI spam detection and classification against input text string.  Analyzes input content as well as embedded URLs with AI deep learnign to detect spam, phishing and other unsafe content.  Uses 25-100 API calls depending on model selected.
-[apiInstance spamDetectTextStringAdvancedPostWithBody:body
+[apiInstance spamDetectFileAdvancedPostWithModel:model
+    preprocessing:preprocessing
+    allowPhishing:allowPhishing
+    allowUnsolicitedSales:allowUnsolicitedSales
+    allowPromotionalContent:allowPromotionalContent
+    inputFile:inputFile
               completionHandler: ^(CMSpamDetectionAdvancedResponse* output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -91,14 +104,20 @@ All URIs are relative to *https://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*CMSpamDetectionApi* | [**spamDetectFileAdvancedPost**](docs/CMSpamDetectionApi.md#spamdetectfileadvancedpost) | **POST** /spam/detect/file/advanced | Perform advanced AI spam detection and classification against input text string.  Analyzes input content as well as embedded URLs with AI deep learnign to detect spam, phishing and other unsafe content.  Uses 25-100 API calls depending on model selected.
+*CMSpamDetectionApi* | [**spamDetectFilePost**](docs/CMSpamDetectionApi.md#spamdetectfilepost) | **POST** /spam/detect/file | Perform AI spam detection and classification on an input image or document (PDF or DOCX).  Analyzes input content as well as embedded URLs with AI deep learnign to detect spam, phishing and other unsafe content.  Uses 100-125 API calls depending on model selected.
+*CMSpamDetectionApi* | [**spamDetectFormSubmissionAdvancedPost**](docs/CMSpamDetectionApi.md#spamdetectformsubmissionadvancedpost) | **POST** /spam/detect/form-submission/advanced | Perform advanced AI spam detection and classification against a form submission.  Analyzes form input content as well as embedded URLs with AI deep learnign to detect spam, phishing and other unsafe content.  Uses 25-100 API calls depending on model selected.
 *CMSpamDetectionApi* | [**spamDetectTextStringAdvancedPost**](docs/CMSpamDetectionApi.md#spamdetecttextstringadvancedpost) | **POST** /spam/detect/text-string/advanced | Perform advanced AI spam detection and classification against input text string.  Analyzes input content as well as embedded URLs with AI deep learnign to detect spam, phishing and other unsafe content.  Uses 25-100 API calls depending on model selected.
 *CMSpamDetectionApi* | [**spamDetectTextStringPost**](docs/CMSpamDetectionApi.md#spamdetecttextstringpost) | **POST** /spam/detect/text-string | Perform AI spam detection and classification against input text string.  Analyzes input content as well as embedded URLs with AI deep learnign to detect spam, phishing and other unsafe content.  Uses 25-75 API calls depending on model selected.
 
 
 ## Documentation For Models
 
+ - [CMSpamDetectionAdvancedFormField](docs/CMSpamDetectionAdvancedFormField.md)
+ - [CMSpamDetectionAdvancedFormSubmissionRequest](docs/CMSpamDetectionAdvancedFormSubmissionRequest.md)
  - [CMSpamDetectionAdvancedRequest](docs/CMSpamDetectionAdvancedRequest.md)
  - [CMSpamDetectionAdvancedResponse](docs/CMSpamDetectionAdvancedResponse.md)
+ - [CMSpamDetectionFormSubmissionAdvancedResponse](docs/CMSpamDetectionFormSubmissionAdvancedResponse.md)
  - [CMSpamDetectionRequest](docs/CMSpamDetectionRequest.md)
  - [CMSpamDetectionResponse](docs/CMSpamDetectionResponse.md)
 

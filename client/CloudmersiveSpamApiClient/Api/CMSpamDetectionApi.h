@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
+#import "CMSpamDetectionAdvancedFormSubmissionRequest.h"
 #import "CMSpamDetectionAdvancedRequest.h"
 #import "CMSpamDetectionAdvancedResponse.h"
+#import "CMSpamDetectionFormSubmissionAdvancedResponse.h"
 #import "CMSpamDetectionRequest.h"
 #import "CMSpamDetectionResponse.h"
 #import "CMApi.h"
@@ -25,6 +27,54 @@ extern NSString* kCMSpamDetectionApiErrorDomain;
 extern NSInteger kCMSpamDetectionApiMissingParamErrorCode;
 
 -(instancetype) initWithApiClient:(CMApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
+
+/// Perform advanced AI spam detection and classification against input text string.  Analyzes input content as well as embedded URLs with AI deep learnign to detect spam, phishing and other unsafe content.  Uses 25-100 API calls depending on model selected.
+/// 
+///
+/// @param model Optional: Specify which AI model to use.  Possible choices are Normal and Advanced.  Default is Advanced. (optional) (default to Advanced)
+/// @param preprocessing Optional: Specify which preprocessing to Use.  Possible choices are None, Compatability and Auto.  Default is Auto. (optional) (default to Auto)
+/// @param allowPhishing True if phishing should be allowed, false otherwise (optional) (default to false)
+/// @param allowUnsolicitedSales True if unsolicited sales should be allowed, false otherwise (optional) (default to false)
+/// @param allowPromotionalContent True if promotional content should be allowed, false otherwise (optional) (default to true)
+/// @param inputFile  (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMSpamDetectionAdvancedResponse*
+-(NSURLSessionTask*) spamDetectFileAdvancedPostWithModel: (NSString*) model
+    preprocessing: (NSString*) preprocessing
+    allowPhishing: (NSNumber*) allowPhishing
+    allowUnsolicitedSales: (NSNumber*) allowUnsolicitedSales
+    allowPromotionalContent: (NSNumber*) allowPromotionalContent
+    inputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMSpamDetectionAdvancedResponse* output, NSError* error)) handler;
+
+
+/// Perform AI spam detection and classification on an input image or document (PDF or DOCX).  Analyzes input content as well as embedded URLs with AI deep learnign to detect spam, phishing and other unsafe content.  Uses 100-125 API calls depending on model selected.
+/// 
+///
+/// @param model Model to use; default setting is Advanced (optional) (default to Advanced)
+/// @param inputFile  (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMSpamDetectionResponse*
+-(NSURLSessionTask*) spamDetectFilePostWithModel: (NSString*) model
+    inputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMSpamDetectionResponse* output, NSError* error)) handler;
+
+
+/// Perform advanced AI spam detection and classification against a form submission.  Analyzes form input content as well as embedded URLs with AI deep learnign to detect spam, phishing and other unsafe content.  Uses 25-100 API calls depending on model selected.
+/// 
+///
+/// @param body Spam detection request (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMSpamDetectionFormSubmissionAdvancedResponse*
+-(NSURLSessionTask*) spamDetectFormSubmissionAdvancedPostWithBody: (CMSpamDetectionAdvancedFormSubmissionRequest*) body
+    completionHandler: (void (^)(CMSpamDetectionFormSubmissionAdvancedResponse* output, NSError* error)) handler;
+
 
 /// Perform advanced AI spam detection and classification against input text string.  Analyzes input content as well as embedded URLs with AI deep learnign to detect spam, phishing and other unsafe content.  Uses 25-100 API calls depending on model selected.
 /// 

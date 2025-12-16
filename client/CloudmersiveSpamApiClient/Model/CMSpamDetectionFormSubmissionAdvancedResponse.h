@@ -17,10 +17,10 @@
 
 
 
-@protocol CMSpamDetectionAdvancedResponse
+@protocol CMSpamDetectionFormSubmissionAdvancedResponse
 @end
 
-@interface CMSpamDetectionAdvancedResponse : CMObject
+@interface CMSpamDetectionFormSubmissionAdvancedResponse : CMObject
 
 /* True if the result is not spam (clean), and false otherwise [optional]
  */

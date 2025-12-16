@@ -1,6 +1,6 @@
-#import "CMSpamDetectionAdvancedResponse.h"
+#import "CMSpamDetectionFormSubmissionAdvancedResponse.h"
 
-@implementation CMSpamDetectionAdvancedResponse
+@implementation CMSpamDetectionFormSubmissionAdvancedResponse
 
 - (instancetype)init {
   self = [super init];
